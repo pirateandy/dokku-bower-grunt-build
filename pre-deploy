@@ -9,6 +9,8 @@ cd /app &&
 
 sleep 1
 
+
+
 echo '-----> Installing Bower'
 if [ -f "./node_modules/bower/bin/bower" ]
 then
@@ -33,6 +35,9 @@ else
   npm install grunt-cli
 fi
 
+echo '-----> Installing Grunt Libraries'
+npm install
+
 echo '-----> Runnging Tasks'
 if [ -f "./Gruntfile.js" ]
 then
@@ -40,6 +45,15 @@ then
 else
   echo 'Gruntfile.js is missing. No tasks to run...'
 fi
+
+echo '-----> Runnging Task Prod'
+if [ -f "./Gruntfile.js" ]
+then
+  ./node_modules/grunt-cli/bin/grunt prod
+else
+  echo 'Gruntfile.js is missing. No tasks to run...'
+fi
+
 EOF
 )
 
